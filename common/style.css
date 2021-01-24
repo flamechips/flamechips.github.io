@@ -71,11 +71,14 @@ img {
 
 p, li {
     margin-top: 0.1em;
-    font-size: 0.9em;
+    font-size: 1.0em;
+    line-height: 1.5em;
+    text-align: justify;
 }
 
 li {
     margin-bottom: 0.5em;
+    max-width: 95%;
 }
 
 strong {

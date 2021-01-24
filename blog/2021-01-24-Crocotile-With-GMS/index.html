@@ -39,7 +39,7 @@
 
 <h6>This post is not sponsored in any way, I just really love Crocotile lol</h6>
 
-<p>A few months back I replaced Blender with Crocotile in my workflow and quickly realized just how much easier it made everything for me. I've come to notice that I'm far from the only person using this combo of tools. Sometimes people will ask me questions about these tools or how I make my stuff. I'm hoping this post can give some insight into how and why I use these programs together, as well as provide some ideas on how you can get started if you're interested.</p>
+<p>As a GameMaker user building games in 3D, I replaced Blender with Crocotile a few months back and it has made the whole process quicker and much more enjoyable for me. Since then, I've found that I'm far from the only person using this combo of tools. Sometimes people will ask me questions about these tools or how I make my stuff, so I'm hoping this post can give some insight into how and why I use these programs together, as well as provide some ideas on how YOU can get started if you're interested.</p>
 
 <h1>Overview</h1>
 
@@ -54,7 +54,7 @@
 <li>Things to know when using Crocotile and GameMaker together</li>
 </ul>
 
-<p>For this, I'll be using <code>GameMaker Studio 2.3.1</code></pre>. In theory, you should be able to do any of this stuff as long as you're using a version of GM that lets you open external files and build vertex buffers.</p>
+<p>For this, I'll be using <code>GameMaker Studio 2.3.1</code></pre> and <code>Crocotile 1.5.8</code></pre>. In theory, you should be able to do any of this stuff as long as you're using a version of GM that lets you open external files and build vertex buffers.</p>
 
 <p><img src="./img/croc_mascot_3d_small.png" alt="Crocotile mascot as it appears in-program"></p>
 
@@ -66,27 +66,27 @@
 
 <h1>Why Would You Use Crocotile With Gamemaker?</h1>
 
-<p>First off: Crocotile costs money. At the time of writing this, it'll take $25 (USD) to get the license. You only need to buy it once, there's no subscription model or anything. You can get the demo for free, but you need the license to export your models. If you have the experience to utilize the tool well, or you don't mind dropping a little cash into a new hobby, then the price is more than worth it. Whether you're experienced or just finding out about the tool, I strongly recommend trying the free demo before purchasing to see if the tool feels right to you.</p>
+<p>Crocotile is great for retro, low-poly visuals. If you're into visuals like those of Minecraft, the Playstation 1, or the Nintendo DS, Crocotile is <em>fantastic</em> for that. Coincidentally, since GameMaker offers only the barest built-in support for 3D rendering and logic -- and thus lacks many of the optimizations a built-for-3D engine would have -- using a low-poly style is also a great way to get into 3D without immediately tanking performance.</p>
 
-<p><em>( As a note, if you <strong>DO</strong> decide to buy Crocotile, I would recommend you do so through the developer's site since Steam purchases have a fee taken off before getting to the developer. )</em></p>
+<p>Crocotile can also be used for more than just making static models, which I'll talk about more later in the post.</p>
 
 <p><img src="./img/by_lamechips_spacesuit_in_fog.gif" alt="gif of a character and scene I made in Crocotile"></p>
 
 <h6>A character and scene I made in Crocotile, imported and rendered in GameMaker Studio 2</h6>
 
-<p>Crocotile is great for retro, low-poly visuals. Nothing is stopping you from using hi-res textures or making models with 2k+ triangles, but if that's your goal then a different tool may be better for you. If you're into visuals like those of Minecraft, the Playstation 1, or the Nintendo DS, Crocotile is <em>fantastic</em> for that. Coincidentally, since GameMaker offers only the barest built-in support for 3D rendering -- and thus lacks many of the optimizations a built-for-3D engine would have -- using a low-poly style is also a great way to get into 3D without immediately tanking performance.</p>
+<p>It's worth mentioning that Crocotile costs money, $25 (USD) to get the license. If you have the experience to utilize the tool well, or you don't mind dropping a little cash into a new hobby, then the price is more than worth it. While the <em>free</em> demo doesn't let you export your models, I strongly recommend trying it out first to see if the tool feels right to you.</p>
 
-<p>Beyond visuals, Crocotile can also be used like an editor if you're willing to create a couple of extra rules for yourself. I'll say more on this in a later section.</p>
+<p><em>( If you decide to buy Crocotile, I urge you do so directly through the developer's site. Steam takes a cut of all sales. )</em></p>
 
 <h1>How Can You Use Crocotile With GameMaker?</h1>
 
-<p>Here, I'll share a few ideas and some advice on how you can use Crocotile and GameMaker together that plays to both programs strengths. I encourage you to experiment and try out any cool ideas that come to mind. In the end, Crocotile is just tool outputting data and GameMaker is just be an engine interpreting any data you give it. How it all gets used is up to you!</p>
+<p>Here, I'll share some ideas and advice on how you can use Crocotile and GameMaker together that plays to both programs strengths. This is just a handful of ways to use the tools together, and I encourage you to get creative/experimental with it in your own projects!</p>
 
 <h1>1. Add A 3D Object To A 2D Game</h1>
 
-<p>This is one of the simplest ways you could use a 3D model in your GameMaker game. It's purely visual and works almost entirely off of GameMaker-provided functions. Also, Crocotile's <code>1 unit == 16 pixels</code></pre> design + GameMaker's default orthographic camera means that it's quite easy to maintain a 'pixel perfect' appearance when your 3D model is thrown into the 2D scene. If your player sprite is 16x16 pixels, you can expect a 16x16 tile in your Crocotile model to be the same size*.</p>
+<p>This is one of the simplest ways you could use a 3D model in your GameMaker game. It's purely visual and works almost entirely off of GameMaker-provided functions. Crocotile's <code>1 unit == 16 pixels</code></pre> design + GameMaker's default orthographic camera means that it's quite easy to maintain a 'pixel perfect' appearance when your 3D model is thrown into the 2D scene. If your player sprite is 16x16 pixels, you can expect a 16x16 tile in your Crocotile model to be the same size*.</p>
 
-<p><em>*When exporting an OBJ, Crocotile assumes every 16 pixels/texels is 1 unit. I believe this is because the default size of a tile in Crocotile is 16x16 pixels. To get a 1:1 ratio of texel size from Crocotile to GameMaker, simply set the export scale to x16. If you leave the scale at 1, then every 16x16 pixels in your model will be squashed into single pixels in GameMaker.</em></p>
+<p><em>*When exporting an OBJ from Crocotile, you'll want to set the scale to x16 since Crocotile works by <code>1 unit == 16 pixels</code></pre> but GameMaker works by <code>1 unit == 1 pixel</code></pre>.</em></p>
 
 <p><img src="./img/legally_distinct_mushroom.png" alt="Mushroom model image"></p>
 
@@ -124,16 +124,16 @@ matrix_set(matrix_world, matrix_build_identity() );
 
 <h6>The mushroom OBJ, displayed in gamemaker via the code above</h6>
 
-<p>That's all there is to it. The only things in this project are the <code>load_obj()</code></pre> function, the code shared above, and the .obj file of the mushroom. This is a quick and effective way to create an element that pops out, or to animate something that would be impractical to animate by hand. A great example is the 3D giant ring in Sonic Mania's sidescrolling levels that takes you into the Chaos Emerald stages. I find the use of a 3D model there fitting, since the stages themselves are in 3D. </p>
+<p>That's all there is to it. This is a quick and effective way to create an element that pops out, or to animate something that would be impractical to animate by hand.</p>
 
 <h1>2. Design Maps</h1>
 
-<p>Using a 3D map will quite literally add depth to your scene even if the logic all happens at a 2D level. You can make a retro FPS like <a target=“_blank” href="https://vlambeer.itch.io/gun-godz">Gun Godz</a>, or a top-down game with 3D map elements like Pokemon Diamond/Pearl, all while mostly working with the functions that GameMaker provides for you. You'll just need to render the map and handle the 3D camera, which is thankfully one of the areas in 3D logic that GameMaker has covered for you.</p>
+<p>Using a 3D map will quite literally add depth to your scene even if the logic all happens at a 2D level. You can make a retro FPS like <a target=“_blank” href="https://vlambeer.itch.io/gun-godz">Gun Godz</a>, or a top-down game with 3D map elements like Pokemon Diamond/Pearl, all while mostly working with the functions that GameMaker provides for you.</p>
 
-<p>In my example, I'm going to proceed with the following assumptions:</p>
+<p>Let's start with the following assumptions:</p>
 
 <ul>
-<li>My game will be top-down and the player never needs to move up/down the z-axis </li>
+<li>The game will be top-down and the player never needs to move up or down, only along the ground</li>
 <li>The environment is non-destructible</li>
 <li>The player occupies a single point (as opposed to a mask/area)</li>
 </ul>
@@ -142,24 +142,20 @@ matrix_set(matrix_world, matrix_build_identity() );
 
 <h6>A level quickly thrown together. My example is blocky like Minecraft, but you can style it however you want</h6>
 
-<p>As you can see here, I have multiple objects in the scene for the various pieces needed to build it. One of the objects is called <code>COLLISION</code></pre>. For this object, I have a separate tileset loaded with checkerboard tiles, and I'm using the Orthographic perspective so I can lay down tiles where I want the player to stop without the tiles actually having to be stuffed inside the visual model.</p>
+<p>I have multiple objects in my scene, and one of the objects is called <code>COLLISION</code></pre>. For this object, I have a separate tileset loaded with checkerboard tiles, and I'm using the orthographic perspective so I can lay down tiles where I want the player to be stopped while keeping some physical distance between the visual model and the collision model.</p>
 
 <p><img src="./img/toggle_collision_layer.gif" alt="A gif showing the collision object toggling"></p>
 
 <h6>Using the orthographic camera makes it easy to align tiles at different heights since there's no distortion/scaling like this is with a perspective camera</h6>
 
-<p>Crocotile lets you export the entire scene and all its objects as one OBJ. When exporting an OBJ, all of the objects you include in the export will be separated by <code>g {OBJECT NAME IN CROCOTILE}</code></pre> per the OBJ spec. Because of this, when we parse the file on GameMaker's side of things, we can handle all the faces under <code>g COLLISION</code></pre> differently than all the other polygons.</p>
+<p>When exporting an OBJ from Crocotile, all of the objects you include in the export will be separated by <code>g {OBJECT NAME IN CROCOTILE}</code></pre>. Because of this, when we parse the file in GameMaker, we can handle the faces under <code>g COLLISION</code></pre> differently from the other polygons.</p>
 
 <p>With the two assumptions listed at the start of this section, we get to do a few things that make this really easy to use:</p>
 
 <ul>
-<li>We can completely ignore the z component of the collision tiles so that collisions are handled only by the XY components.</li>
+<li>We can completely ignore the Z component of the collision tiles so that collisions are handled only by the XY components.</li>
 <li>We can build an unchanging array of triangles from the Collision object and do our collision checks with <code>point_in_triangle()</code></pre> where the Player is the point and the environment is the set of triangles.</li>
 </ul>
-
-<p>There are a lot of better ways to handle collisions and to build out this collision model, but for now we just want something that works. If it's optimization you're after, you'll probably want to find or build out a library of collision functions with trees and all that.</p>
-
-<p>-</p>
 
 <p>Here's some code that:</p>
 
@@ -280,7 +276,7 @@ gpu_set_zfunc( cmpfunc_lessequal ); // the default cmpfunc
 
 <h6>The player is signified by the yellow circle, and the desired position is signified by the pink ring. The player gets stopped whenever a triangle is in the way of movement.</h6>
 
-<p>It's not particularly efficient, but it does exactly what I need it to do. For most things -- but especially when building out 3D things in GameMaker -- I recommend getting your stuff working before trying to optimize it. Premature optimizations can easily make things worse or harder to read, and you may find that a lot of non-optimal code does a good enough job.</p>
+<p>Yeah... it's not particularly efficient, but it does exactly what I need it to do for this example!</p>
 
 <h1>3. Build Navigable 3D Environments</h1>
 
@@ -288,37 +284,34 @@ gpu_set_zfunc( cmpfunc_lessequal ); // the default cmpfunc
 
 <h6>An old gif of some 3D stuff I made in GameMaker Studio 2.3, with collision meshes, raycasting, skeletal animation, etc... it took a lot of time to be able to make something that looks and works like this in GameMaker.</h6>
 
-<p>Unlike the prior sections, this portion will just be a list with some advice on how you may use Crocotile to build worlds that can actually be navigated in three dimensions. I don't want to give the impression that you can just whip up a fully-functional 3D system in GameMaker from nothing. If you've done it before, it may not be so hard, but even then it can still take a lot of time. There is often a whole lot that goes into a 3D system just to get walking around working, and for most people I would recommend you just go with Unity or something if you need a full-on 3D engine.</p>
-
-<p>Obviously there are people who will still go ahead and build out 3D systems in GameMaker. It's something I myself love doing, and I am far from the first. If you are really set on doing 'advanced' 3D work in GameMaker (or you already have, and you just wanna know how Crocotile can fit into it) then here are some basic tips for using Crocotile to help you out:</p>
+<p>I won't share any examples here, just some advice. For most people, if you're gonna need full 3D functionality -- collision, physics, all that stuff -- I would recommend you go with another engine like Unity. Doing 3D in GameMaker can be really fun, but it's far from easy and it takes a lot of time both to learn the concepts and implement them in a useful way. If you are really set on doing 'advanced' 3D work in GameMaker (or you already have, and you just wanna know how Crocotile can fit into it) then here are some basic tips for using Crocotile to help you out:</p>
 
 <ul>
-<li>Crocotile's layer/object system makes it easy to build separate meshes for different purposes. When I build a level in Crocotile, I keep a separate collision model to help keep performance up in GMS. If you have a flat surface made of 16 tiles (4x4), the collision geometry for that surface can just be one tile stretched out to cover the same area. This means I can add a lot of detail to the level without having the CPU do unnecessary work.</li>
-<li>Crocotile's layer/object system will export the names of objects as well, which you can use for some tricks. As one example, something I like do to is place down 'markers' that GMS will use to spawn an object. In my case, the 'markers' are just singular quads. Anything prepended with 'mk_' will be interpreted on GameMaker's side of things as 'a marker to spawn a specific entity'. As an example, if I have 3 'mk_enemy' markers in the scene, this script would find 6 faces under <code>g mk_enemy</code></pre> in the OBJ file (2 tri for each of the 3 quads), find the center coordinates of each quad, and spawn something like <code>oEnemy</code></pre> at that point.</li>
-<li>Crocotile's exported models can be further manipulated in Blender or any other software capable of opening OBJ files. If you prefer Blender when working with many assets or need to do any animation or fancy deformations, it's as simple as importing the file, doing your work, and exported it back to an OBJ. Likewise, Crocotile recently added the ability to import various model formats, so if you want to pull something into Crocotile, that's an option. This means that Crocotile can happily live alongside any other 3D software you may be using.</li>
+<li>Crocotile's layer/object system lets you build separate meshes for different purposes. When I build a level in Crocotile, I keep a separate collision model to help keep performance up in GMS. For example, if my level is just a flat plane made of 16 tiles (4x4), my collision model of the plain would just be a single tile stretched out to cover the same area.</li>
+<li>Crocotile's layer/object system exports the names of objects, which you can use for some tricks. As one example, something I like do to is place down 'markers' that GMS will use to spawn an object. In my case, the 'markers' are just singular quads. Anything objects prepended with 'mk_' will be interpreted on GameMaker's side of things as 'a marker to spawn a specific entity'. If I have 3 'mk_enemy' markers in the scene, this script would find 6 faces under <code>g mk_enemy</code></pre> in the OBJ file (2 tris for each of the 3 quads), find the center coordinates of each quad, and spawn something like <code>oEnemy</code></pre> at that point.</li>
+<li>Since Crocotile exports standardized OBJ files, you can further work on your models in Blender or something like that. This can be useful if you plan to animate your models, or feel more comfortable assembling your scenes outside of Crocotile. Additionally, Crocotile recently added support for importing multiple file types, so you can import models that you started elsewhere.</li>
 <li>I really encourage you try something new and weird with it. When you're essentially building your own 3D engine, you have full control over how things work, so why not experiment? If youre up to it, use it as an opportunity to create 3D behavior and spaces in a way that existing engines usually don't.</li>
 </ul>
 
 <h1>Some Things To Know When Using Crocotile with GameMaker</h1>
 
-<p>This last part is list of little things I've learned while using these 2 programs together. These aren't really arguments for or against anything, just stuff I feel you should be aware of. (As time goes on, I may come back an expand this list with any little details I learn)</p>
+<p>This last part is list of little things I've learned while using these 2 programs together. I may come back later and expand this list with any little details I learn.</p>
 
 <ul>
-<li><p>Crocotile, at this point in time, is hard-coded to export with a certain orientation. The 3D orientation in GameMaker is up to you, but I would recommend keeping the XY plane as your 'horizontal' plane and the Z axis as your up+down. For me at least, this makes it easier to use functions that GM provides without having to remember stuff like "oh, right, I need to be using Z instead of Y for point_direction() now". The downside of doing this, though, is that you'll need to manually reorient any OBJs imported to GameMaker from Crocotile. To handle this aspect of Crocotile, you have a few options:</p>
+<li><p>Crocotile, at this point in time, is hard-coded to export with a certain orientation. The 3D orientation in GameMaker is up to you, but I would recommend keeping the XY plane as your 'horizontal' plane and the Z axis as your up+down. This makes it easier to use functions that GM provides without having to remember stuff like "oh, right, I need to be using Z instead of Y for point_direction() now". The downside of doing this, though, is that you'll need to manually reorient any OBJs imported to GameMaker from Crocotile. To handle this aspect of Crocotile, you have a few options:</p>
 
 <ul>
 <li><p>You can manually flip and move coordinates around in your OBJ import function, which works fine as long as all your OBJs are oriented the same, or if you have a separate version of the function for Crocotile's exported OBJs.</p></li>
-<li><p>You can reorient your models at some point between exporting from Crocotile and importing to GameMaker. With Blender, this is easy because you get to choose orientation at export time. With Crocotile, the best I've come up with is a Python script that reorients the values and adds a <code># REORIENTED</code></pre> to the top of the file so that future runs of the script know to skip that model.</p></li>
+<li><p>You can reorient the models before importing. In my case, I've written a Python script that reorients the values to be GameMaker-ready and adds a <code># REORIENTED</code></pre> to the top of the file so that future runs of the script know to skip that model.</p></li>
 </ul></li>
-<li><p>Crocotile allows you to split tiles into triangles, meaning you can remove individual triangles you don't need. What this really means is that the deleted edge is made degenerate (where atleast one of the 3 vertices shares the position of another vertex). If you enable the 'merge vertices' option when exporting, it should prevented these degenerate triangles from tagging along. If you forget to do this, the results could be anywhere from harmless to 'my collision mesh is suddenly crashing because it doesn't account for degenerate tris'. </p></li>
-<li><p>GameMaker, by default, does no front/back-face culling. If you need it, you'll need to enable this with <code>gpu_set_cullmode()</code></pre>. Conversely, Crocotile will have backface culling on by default. You can press <code>9</code></pre> to toggle this on and off -- just be aware that if you keep it turned off in Crocotile, it makes it very easy to place tiles facing the 'wrong' way without realizing, which will then be incorrectly culled in GameMaker if you turn GM's culling on. I recommend hitting <code>9</code></pre> a few times every once in a while as a sanity check.</p></li>
-<li><p>This point and the next are more general purpose than about Crocotile specifically: Crocotile, like most OBJ exporters, will give you the .mtl files and textures to use along with your OBJ, so you can import your textures at run time, BUT this can come at a cost. At this point in time, GameMaker will automatically place images loaded via <code>sprite_add()</code></pre> onto their own texture page. This is good in the sense that you won't have to mess with your models UVs, but can lead to dropped performance. The general case is that any time you use a texture from a different page than the last drawn image, a texture swap occurs. The effects of this vary from system to system, and the reality is that you probably won't see any meaningful performance drops so long as you aren't swapping too many textures. It's good to be aware of in case it does become a problem. If you're concerned about it, you can use <code>show_debug_overlay(true)</code></pre> to keep an eye on how many texture swaps you're doing per-frame.</p></li>
-<li><p>Speaking of Texture Pages, it's important to know that you'll need to modify the UVs of an imported OBJ if your texture is saved as an asset in your GameMaker project but is not on its own Page. <code>sprite_get_uvs()</code></pre> can help you out here. In the first 2 examples I shared earlier, both the <code>tex_mushroom</code></pre> and <code>tex_grasslands</code></pre> sprites have the 'separate texture page' property enabled. If I didn't have that enabled, it would end up looking like this unless I properly adjusted the UVs upon import:</p></li>
+<li><p>Crocotile lets you break your tiles up into 2 triangles and delete any you don't need. Just be aware that doing so doesn't actually remove the triangle, but rather makes it degenerate (two vertices share the same position). For rendering this is usually fine, but be aware that some collision and raycasting algorithms don't account for this and may give you weird results. You can circumvent this by enabling <code>merge vertices</code></pre> when exporting.</p></li>
+<li><p>GameMaker, by default, does no front/back-face culling. You'll need to enable this with <code>gpu_set_cullmode()</code></pre>. Conversely, Crocotile starts with backface culling on by default. You can press <code>9</code></pre> to toggle this on and off -- just be aware that if you keep it turned off in Crocotile, it becomes very easy to place tiles facing the 'wrong' way without realizing, which will then be incorrectly culled in GameMaker if you turn GM's culling on. I recommend hitting <code>9</code></pre> a few times every once in a while as a sanity check.</p></li>
+<li><p>If a texture you want to use does not have 'Separate Texture Page' enabled, you'll want to use <code>sprite_get_uvs()</code></pre> when loading the OBJ to properly recalculate the uvs from their default 0-1 range. Unless you're using a lot of textures, though, it's probably fine to just enable 'Separate Texture Page'. For reference, if you don't properly map/adjust the UVs when importing, your model will probably look like this:</p></li>
 </ul>
 
 <p><img src="./img/non_separated_texture_pages.png" alt="How the model looks with non-separated Texture Pages"></p>
 
-<h6>Note how the mushroom texture, as well as some empty/uncolored texuring, are now appearing on the model. This is because the model expects to be able to find it's texture occupying 100% of the texture page, but without 'Separate Texture Page' enabled, we can't tell where our expected texture is on the page and how much space is occupies without something like <code>sprite_get_uvs()</code></pre>.</h6>
+<h6>Note how the mushroom texture + some blank texturing now also appear on the model. This is because the model expects to find it's texture occupying 100% of the texture page, but without 'Separate Texture Page' enabled, the intended texture only occupies a portion of it's page, alongside any other textures not marked for separation.</h6>
 
 <h1>Closing</h1>
 
