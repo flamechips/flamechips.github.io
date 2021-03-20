@@ -23,6 +23,7 @@ div.navbar {
     width: 100%;
     margin: 0em;
     padding: 0em;
+    z-index: 10;
 }
 
 div.navbar div.wrapper {
@@ -134,10 +135,38 @@ code {
     background-color:#2d2d2d;
 }
 
+pre[class*="language"] {
+    margin: 0;
+}
+
+.ccont {
+    position: relative;
+}
+
 a {
     text-decoration: none;
     color:rgb(71, 151, 255);
 }
+
+.collapsible {
+    text-align:     right;
+    background-color:#323232;
+    color:#777;
+    line-height: 1.8em;
+    margin: 0;
+    padding: 0.5em;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.blocktitle {
+    margin-left: 1em;
+    color:rgb(255, 237, 137);
+    position: absolute;
 
 /* Footer */
 footer {
